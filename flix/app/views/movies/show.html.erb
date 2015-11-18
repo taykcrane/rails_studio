@@ -18,8 +18,22 @@
   <p>
     <%= format_total_gross(@movie) %>
   </p>
+  <h3>Cast</h3>
+  <p>
+    <%= @movie.cast %>
+  </p>
+  <h3>Director</h3>
+  <p> 
+    <%= @movie.director %>
+  </p>
+  <h3>Duration</h3>
+  <p>
+    <%= @movie.duration %>
+  </p>
+  <h3>Image</h3>
+  <p>
+    <%= image_for(@movie) %>
+  </p>
 </article>
 
-<%= link_to("All Movies", movies_path) %> | <%= link_to("Edit", edit_movie_path(@movie)) %> | <%= link_to("Delete", movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}) %>
-
-<%= render "footer" %>
+<%= link_to("Edit", edit_movie_path(@movie)) %> | <%= link_to("Delete", movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}) %>
