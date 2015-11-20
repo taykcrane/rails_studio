@@ -1,5 +1,7 @@
 class Movie < ActiveRecord::Base
-  
+  has_many :reviews
+
+
   RATINGS = ["G", "PG", "PG-13", "R", "NC-17"]
 
   validates :title, :released_on, :duration, presence: true
