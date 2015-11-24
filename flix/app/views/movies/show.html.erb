@@ -27,6 +27,7 @@
   <p>
     <%= format_total_gross(@movie) %>
   </p>
+  <h3><%= link_to("See #{pluralize(@movie.reviews.count, 'Review')}", movie_reviews_path(@movie.id)) %></h3>
   
   <footer>
     <nav>
