@@ -27,9 +27,32 @@
   <p>
     <%= format_total_gross(@movie) %>
   </p>
-  <h3><%= link_to("See #{pluralize(@movie.reviews.count, 'Review')}", movie_reviews_path(@movie.id)) %></h3>
+
+  <h3>Average Review</h3>
+  <p>
+    <%= format_average_stars(@movie) %>
+  </p>
+
+  <% if @movie.reviews.any? %>
+    <h3>Recent Reviews</h3>
+    <% @movie.recent_reviews.each do |review| %>
+      <li>
+        <span class="review"><%= pluralize(review.stars, 'star') %></span>
+        <span class="user">by <%= review.name %></span>
+        <span class="date"><%= time_ago_in_words(review.created_at) %> ago</span>
+        <p>
+          &quot;<%= review.comment %>&quot;
+        </p>
+      </li>
+    <% end %>
+    <% if (@movie.reviews.count > 2) %>
+      <p>Read all <%= link_to(pluralize(@movie.reviews.count, "review"), movie_reviews_path(@movie)) %></p>
+    <% end %>
+  <% end %>
+
   
   <footer>
+    <%= link_to "Write Review!", new_movie_review_path(@movie), class: "button ok review" %>
     <nav>
       <%= link_to 'Edit', edit_movie_path(@movie), class: 'button' %>
       <%= link_to 'Delete', @movie, 
